@@ -10,7 +10,9 @@
   <meta name="theme-color" content="#F5F5F7">
   <meta name="description" content="Revolut Plan-Vergleich für Reisen: Standard, Premium oder Metal? Live-Konfigurator, Checkliste, alle Fakten.">
   <title>Revolut · Plan-Vergleich für Reisen</title>
-  <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%231D1D1F'/><text x='50%25' y='62%25' font-size='100' text-anchor='middle' fill='%23BFE2FF' font-family='-apple-system'>✈️</text></svg>">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
   <style>
     :root {
       color-scheme: light;
@@ -58,6 +60,7 @@
     html {
       scroll-behavior: smooth;
       -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
       background: var(--bg);
       color-scheme: light;
     }
@@ -1478,11 +1481,11 @@
       <div class="config-grid">
         <div class="config-inputs">
           <div class="input-group">
-            <label>Reisedauer</label>
+            <label for="weeks">Reisedauer</label>
             <div class="input-with-value">
               <span><span class="input-value" id="weeks-display">3</span><span class="input-value-suffix" id="weeks-suffix">Wochen</span></span>
             </div>
-            <input type="range" id="weeks" min="1" max="6" step="1" value="3">
+            <input type="range" id="weeks" min="1" max="6" step="1" value="3" aria-label="Reisedauer in Wochen">
           </div>
 
           <div class="input-group">
@@ -1852,7 +1855,10 @@
       if (state.persons === 1) {
         togetherInput.disabled = true;
         togetherInput.checked = false;
-        state.together = false;
+        if (state.together) {
+          state.together = false;
+          saveState();
+        }
         togetherRow.style.opacity = '0.4';
         togetherRow.style.pointerEvents = 'none';
       } else {
