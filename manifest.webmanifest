@@ -1,0 +1,32 @@
+{
+  "name": "Revolut Reise-Plan",
+  "short_name": "Reise-Plan",
+  "description": "Revolut Plan-Vergleich für Reisen: Standard, Premium oder Metal? Live-Konfigurator, Checkliste, alle Fakten.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F5F5F7",
+  "theme_color": "#F5F5F7",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "icon-192.png?v=2",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png?v=2",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "apple-touch-icon-1024.png?v=2",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
