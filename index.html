@@ -1213,6 +1213,124 @@
       }
     }
 
+    /* ========== COUNTDOWN ========== */
+    .countdown {
+      margin: 32px auto 0;
+      max-width: 560px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.55s forwards;
+    }
+
+    .countdown-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .countdown-header-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.6);
+      animation: pulse 2s var(--ease-out) infinite;
+    }
+
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.6); }
+      70%  { box-shadow: 0 0 0 10px rgba(0, 113, 227, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 113, 227, 0); }
+    }
+
+    .countdown-route {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .countdown-route .countdown-arrow {
+      display: inline-block;
+      margin: 0 8px;
+      color: var(--text-tertiary);
+      font-weight: 400;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .countdown-cell {
+      background: var(--baby-blue-soft);
+      border-radius: var(--radius-sm);
+      padding: 14px 8px 12px;
+      text-align: center;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .countdown-value {
+      font-size: clamp(26px, 6vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .countdown-label {
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .countdown-footer {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+      letter-spacing: -0.01em;
+    }
+
+    .countdown-footer strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      .countdown {
+        padding: 20px 18px;
+        margin-top: 28px;
+      }
+      .countdown-grid {
+        gap: 6px;
+      }
+      .countdown-cell {
+        padding: 12px 4px 10px;
+      }
+      .countdown-label {
+        font-size: 10px;
+      }
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -1277,6 +1395,37 @@
     <p class="hero-subtitle">
       Standard, Premium oder Metal? Konfiguriere deine Reise und finde heraus, welcher Plan wirklich Sinn macht – mit allen Fakten zu Gebühren, Versicherung und Timing.
     </p>
+
+    <div class="countdown" id="countdown" role="timer" aria-live="polite" aria-label="Countdown bis Reisebeginn">
+      <div class="countdown-header">
+        <span class="countdown-header-dot"></span>
+        <span>Countdown bis Reisebeginn</span>
+      </div>
+      <div class="countdown-route">
+        Frankfurt <span class="countdown-arrow">→</span> Bangkok
+      </div>
+      <div class="countdown-grid">
+        <div class="countdown-cell">
+          <div class="countdown-value" id="cd-days">--</div>
+          <div class="countdown-label">Tage</div>
+        </div>
+        <div class="countdown-cell">
+          <div class="countdown-value" id="cd-hours">--</div>
+          <div class="countdown-label">Stunden</div>
+        </div>
+        <div class="countdown-cell">
+          <div class="countdown-value" id="cd-minutes">--</div>
+          <div class="countdown-label">Minuten</div>
+        </div>
+        <div class="countdown-cell">
+          <div class="countdown-value" id="cd-seconds">--</div>
+          <div class="countdown-label">Sekunden</div>
+        </div>
+      </div>
+      <div class="countdown-footer">
+        Abflug am <strong>5. August 2026</strong>
+      </div>
+    </div>
   </header>
 
   <!-- ========== PLAN CARDS ========== -->
@@ -2082,6 +2231,42 @@
         }
       });
     });
+
+    // ============ COUNTDOWN ============
+    (function initCountdown() {
+      const target = new Date(2026, 7, 5, 0, 0, 0).getTime(); // 5. August 2026, 00:00 Ortszeit
+      const elDays    = document.getElementById('cd-days');
+      const elHours   = document.getElementById('cd-hours');
+      const elMinutes = document.getElementById('cd-minutes');
+      const elSeconds = document.getElementById('cd-seconds');
+      const footer    = document.querySelector('#countdown .countdown-footer');
+      if (!elDays || !elHours || !elMinutes || !elSeconds) return;
+
+      const pad = (n) => String(n).padStart(2, '0');
+
+      function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+          elDays.textContent = '00';
+          elHours.textContent = '00';
+          elMinutes.textContent = '00';
+          elSeconds.textContent = '00';
+          if (footer) footer.innerHTML = '<strong>Gute Reise!</strong> Heute geht es los.';
+          return;
+        }
+        const days    = Math.floor(diff / 86400000);
+        const hours   = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        elDays.textContent    = pad(days);
+        elHours.textContent   = pad(hours);
+        elMinutes.textContent = pad(minutes);
+        elSeconds.textContent = pad(seconds);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
 
     // ============ INIT ============
     render();
