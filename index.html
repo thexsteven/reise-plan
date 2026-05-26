@@ -1423,7 +1423,7 @@
         </div>
       </div>
       <div class="countdown-footer">
-        Abflug am <strong>5. August 2026</strong>
+        Abflug am <strong>5. August 2026, 12:10 Uhr</strong>
       </div>
     </div>
   </header>
@@ -2234,7 +2234,7 @@
 
     // ============ COUNTDOWN ============
     (function initCountdown() {
-      const target = new Date(2026, 7, 5, 0, 0, 0).getTime(); // 5. August 2026, 00:00 Ortszeit
+      const target = Date.UTC(2026, 7, 5, 10, 10, 0); // 5. August 2026, 12:10 Uhr Deutschland (CEST = UTC+2)
       const elDays    = document.getElementById('cd-days');
       const elHours   = document.getElementById('cd-hours');
       const elMinutes = document.getElementById('cd-minutes');
