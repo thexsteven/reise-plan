@@ -1,7 +1,7 @@
 {
-  "name": "Revolut Reise-Plan",
-  "short_name": "Reise-Plan",
-  "description": "Revolut Plan-Vergleich für Reisen: Standard, Premium oder Metal? Live-Konfigurator, Checkliste, alle Fakten.",
+  "name": "Thailand 2026 Reiseplan",
+  "short_name": "Reiseplan",
+  "description": "Reiseplan Thailand August 2026 – Route, Kosten, Anbieter, Checkliste.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

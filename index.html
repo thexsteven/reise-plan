@@ -6,10 +6,10 @@
   <meta name="color-scheme" content="light">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Reise-Plan">
+  <meta name="apple-mobile-web-app-title" content="Reiseplan">
   <meta name="theme-color" content="#F5F5F7">
-  <meta name="description" content="Revolut Plan-Vergleich für Reisen: Standard, Premium oder Metal? Live-Konfigurator, Checkliste, alle Fakten.">
-  <title>Revolut · Plan-Vergleich für Reisen</title>
+  <meta name="description" content="Reiseplan Thailand August 2026 – Route, Kosten, Anbieter, Checkliste.">
+  <title>Thailand 2026 · Unser Reiseplan</title>
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=2">
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=2">
@@ -205,7 +205,7 @@
 
     /* ========== HERO ========== */
     .hero {
-      padding: 72px 24px 56px;
+      padding: 72px 24px 64px;
       text-align: center;
       background: linear-gradient(180deg, var(--bg) 0%, var(--baby-blue-soft) 100%);
       position: relative;
@@ -263,7 +263,7 @@
       font-size: clamp(16px, 2.5vw, 21px);
       color: var(--text-secondary);
       max-width: 600px;
-      margin: 0 auto;
+      margin: 0 auto 40px;
       letter-spacing: -0.012em;
       line-height: 1.45;
       opacity: 0;
@@ -273,6 +273,71 @@
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== COUNTDOWN ========== */
+    .countdown-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 28px 24px 24px;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.55s forwards;
+    }
+
+    .countdown-flight {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--baby-blue-soft);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .countdown-unit {
+      background: var(--bg-section);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 16px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .countdown-num {
+      font-size: clamp(28px, 7vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .countdown-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+    }
+
+    .countdown-date {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--text-tertiary);
     }
 
     /* ========== SECTION ========== */
@@ -312,14 +377,16 @@
       margin-bottom: 44px;
     }
 
-    /* ========== QUICK ANSWERS ========== */
-    .quick-grid {
+    /* ========== ROUTE ========== */
+    .route-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
+      counter-reset: stage;
     }
 
-    .quick-card {
+    .route-card {
+      position: relative;
       background: var(--bg-elevated);
       border-radius: var(--radius-lg);
       padding: 28px 24px;
@@ -327,566 +394,322 @@
       transition: all 0.3s var(--ease-out);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .quick-card:hover {
+    .route-card:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
       border-color: var(--border);
     }
 
-    .quick-card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-sm);
-      background: var(--baby-blue-soft);
+    .route-card-top {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 22px;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .quick-card-question {
-      font-size: 18px;
+    .route-stage {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--baby-blue-soft);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .route-stage::before {
+      counter-increment: stage;
+      content: counter(stage);
+    }
+
+    .route-nights {
+      font-size: 12px;
       font-weight: 600;
+      color: var(--accent);
+      background: var(--baby-blue-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .route-name {
+      font-size: 20px;
+      font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--text);
     }
 
-    .quick-card-answer {
+    .route-name span {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .route-dates {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+    }
+
+    .route-desc {
       font-size: 14px;
       color: var(--text-secondary);
       line-height: 1.5;
     }
 
-    .quick-card-answer strong {
-      color: var(--text);
-      font-weight: 600;
+    .route-note {
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-align: center;
     }
 
-    /* ========== PLAN CARDS ========== */
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .plan {
-      position: relative;
+    /* ========== COST TABLE ========== */
+    .cost-card {
       background: var(--bg-elevated);
       border-radius: var(--radius-lg);
-      padding: 32px 24px;
-      border: 1.5px solid var(--border-light);
-      transition: all 0.4s var(--ease-out);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
       overflow: hidden;
     }
 
-    .plan:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--border);
+    .cost-row {
+      display: grid;
+      grid-template-columns: 1.3fr 1.7fr auto;
+      gap: 14px;
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-light);
+      align-items: baseline;
     }
 
-    .plan.recommended {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--baby-blue-soft), var(--shadow-md);
+    .cost-row:last-child { border-bottom: none; }
+
+    .cost-item {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
     }
 
-    .plan-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: var(--bg-dark);
-      color: var(--bg-elevated);
-      font-size: 11px;
+    .cost-detail {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .cost-value {
+      font-size: 15px;
       font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 999px;
-      letter-spacing: 0.02em;
-      opacity: 0;
-      transform: translateY(-4px);
-      transition: all 0.3s var(--ease-out);
+      color: var(--text);
+      text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
 
-    .plan.recommended .plan-badge {
-      opacity: 1;
-      transform: translateY(0);
+    .cost-row.subtotal {
+      background: var(--bg-section);
+      font-weight: 600;
+    }
+    .cost-row.subtotal .cost-item { font-weight: 700; }
+
+    .cost-row.buffer .cost-item,
+    .cost-row.buffer .cost-value {
+      color: var(--text-secondary);
     }
 
-    .plan-name {
+    .cost-row.total {
+      background: var(--bg-dark);
+    }
+    .cost-row.total .cost-item {
+      color: var(--text-inverse);
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .cost-row.total .cost-value {
+      color: var(--baby-blue);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* Cost share bars */
+    .cost-shares {
+      margin-top: 20px;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+    }
+
+    .cost-shares-title {
       font-size: 13px;
       font-weight: 600;
-      color: var(--text-secondary);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-    }
-
-    .plan-price {
-      font-size: 38px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 4px;
-      color: var(--text);
-    }
-
-    .plan-price-unit {
-      font-size: 14px;
+      letter-spacing: 0.04em;
       color: var(--text-secondary);
-      font-weight: 500;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    .plan-tagline {
+    .share-row {
+      margin-bottom: 14px;
+    }
+    .share-row:last-child { margin-bottom: 0; }
+
+    .share-head {
+      display: flex;
+      justify-content: space-between;
       font-size: 14px;
-      color: var(--text);
-      line-height: 1.4;
-      margin-bottom: 24px;
-      min-height: 40px;
+      margin-bottom: 6px;
+    }
+    .share-head .share-label { color: var(--text); font-weight: 500; }
+    .share-head .share-val { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+
+    .share-track {
+      height: 8px;
+      background: var(--border-light);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .share-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--baby-blue-deep), var(--accent));
     }
 
-    .plan-features {
+    /* Already paid */
+    .paid-card {
+      margin-top: 20px;
+      background: linear-gradient(135deg, #EAF8EE, #F4FCF6);
+      border: 1px solid rgba(52, 199, 89, 0.22);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+    }
+    .paid-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .paid-list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-
-    .plan-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
+    .paid-list li {
       font-size: 14px;
-      line-height: 1.4;
-      color: var(--text);
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-left: 22px;
+      position: relative;
+    }
+    .paid-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--success);
+      font-weight: 700;
+    }
+    .paid-list strong { color: var(--text); font-weight: 600; }
+    .paid-list a { color: var(--accent); text-decoration: none; }
+    .paid-list a:hover { text-decoration: underline; }
+
+    /* ========== PROVIDERS ========== */
+    .providers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
 
-    .plan-feature-icon {
-      flex-shrink: 0;
-      display: inline-flex;
+    .provider-card {
+      background: var(--bg-elevated);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      border: 1px solid var(--border-light);
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .provider-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .provider-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .provider-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--baby-blue-soft);
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      font-size: 11px;
-      font-weight: 700;
-      margin-top: 1px;
-    }
-
-    .plan-feature .check {
-      background: var(--baby-blue-soft);
-      color: var(--accent);
-    }
-
-    .plan-feature .cross {
-      background: transparent;
-      color: var(--text-tertiary);
-    }
-
-    .plan-feature.disabled {
-      color: var(--text-tertiary);
-    }
-
-    /* ========== COMPARISON TABLE ========== */
-    .comparison {
-      background: var(--bg-elevated);
-      border-radius: var(--radius-lg);
-      padding: 8px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border-light);
-      overflow: hidden;
-    }
-
-    .comparison-tabs {
-      display: none;
-      gap: 4px;
-      padding: 4px;
-      background: var(--bg-section);
-      border-radius: var(--radius-sm);
-      margin-bottom: 8px;
-    }
-
-    .comparison-tab {
-      flex: 1;
-      padding: 10px 8px;
-      border: none;
-      background: transparent;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      border-radius: var(--radius-xs);
-      cursor: pointer;
-      transition: all 0.2s var(--ease);
-    }
-
-    .comparison-tab.active {
-      background: var(--bg-elevated);
-      color: var(--text);
-      box-shadow: var(--shadow-xs);
-    }
-
-    .compare-row {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border-light);
-      align-items: center;
-      gap: 12px;
-    }
-
-    .compare-row:last-child {
-      border-bottom: none;
-    }
-
-    .compare-row.header {
-      background: var(--bg-section);
-      border-radius: var(--radius-md);
-      font-weight: 600;
-      font-size: 12px;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .compare-row.header > div {
-      text-align: center;
-    }
-
-    .compare-row.header > div:first-child {
-      text-align: left;
-    }
-
-    .compare-feature {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .compare-feature-sub {
-      font-size: 12px;
-      color: var(--text-secondary);
-      font-weight: 400;
-      margin-top: 2px;
-    }
-
-    .compare-value {
-      text-align: center;
-      font-size: 14px;
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .compare-value.highlight {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .compare-value.no {
-      color: var(--text-tertiary);
-    }
-
-    /* ========== CONFIGURATOR ========== */
-    .configurator-wrap {
-      background: var(--bg-dark);
-      color: var(--text-inverse);
-      border-radius: var(--radius-xl);
-      padding: 48px 40px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .configurator-wrap::before {
-      content: "";
-      position: absolute;
-      top: -200px;
-      right: -200px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, var(--baby-blue) 0%, transparent 70%);
-      opacity: 0.18;
-      filter: blur(40px);
-      pointer-events: none;
-    }
-
-    .configurator-wrap > * {
-      position: relative;
-    }
-
-    .configurator-wrap .section-eyebrow {
-      color: var(--baby-blue);
-    }
-
-    .configurator-wrap .section-title {
-      color: var(--text-inverse);
-    }
-
-    .configurator-wrap .section-subtitle {
-      color: rgba(245, 245, 247, 0.7);
-    }
-
-    .config-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-
-    .config-inputs {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(245, 245, 247, 0.7);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 10px;
-    }
-
-    .input-with-value {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-
-    .input-value {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      color: var(--baby-blue);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .input-value-suffix {
-      font-size: 14px;
-      color: rgba(245, 245, 247, 0.6);
-      margin-left: 4px;
-    }
-
-    input[type="range"] {
-      width: 100%;
-      -webkit-appearance: none;
-      appearance: none;
-      background: transparent;
-      height: 24px;
-      cursor: pointer;
-    }
-
-    input[type="range"]::-webkit-slider-runnable-track {
-      height: 6px;
-      background: rgba(245, 245, 247, 0.15);
-      border-radius: 999px;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 22px;
-      height: 22px;
-      background: #FFFFFF;
-      border-radius: 50%;
-      margin-top: -8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      transition: transform 0.15s var(--ease);
-    }
-
-    input[type="range"]::-webkit-slider-thumb:active {
-      transform: scale(1.15);
-    }
-
-    input[type="range"]::-moz-range-track {
-      height: 6px;
-      background: rgba(245, 245, 247, 0.15);
-      border-radius: 999px;
-      border: none;
-    }
-
-    input[type="range"]::-moz-range-thumb {
-      width: 22px;
-      height: 22px;
-      background: #FFFFFF;
-      border-radius: 50%;
-      border: none;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .segmented {
-      display: flex;
-      background: rgba(245, 245, 247, 0.08);
-      border-radius: var(--radius-sm);
-      padding: 4px;
-      gap: 2px;
-    }
-
-    .segmented button {
-      flex: 1;
-      padding: 10px 16px;
-      border: none;
-      background: transparent;
-      color: rgba(245, 245, 247, 0.6);
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 9px;
-      cursor: pointer;
-      transition: all 0.2s var(--ease);
-      letter-spacing: -0.01em;
-    }
-
-    .segmented button.active {
-      background: var(--text-inverse);
-      color: var(--bg-dark);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    .switch-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .switch-row label {
-      margin-bottom: 0;
-      text-transform: none;
-      letter-spacing: -0.01em;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-inverse);
-      cursor: pointer;
-    }
-
-    .switch {
-      position: relative;
-      width: 51px;
-      height: 31px;
+      font-size: 20px;
       flex-shrink: 0;
     }
 
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .switch-slider {
-      position: absolute;
-      cursor: pointer;
-      inset: 0;
-      background: rgba(245, 245, 247, 0.15);
-      border-radius: 999px;
-      transition: background 0.2s var(--ease);
-    }
-
-    .switch-slider::before {
-      content: "";
-      position: absolute;
-      width: 27px;
-      height: 27px;
-      left: 2px;
-      bottom: 2px;
-      background: #FFFFFF;
-      border-radius: 50%;
-      transition: transform 0.25s var(--ease-out);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .switch input:checked + .switch-slider {
-      background: var(--success);
-    }
-
-    .switch input:checked + .switch-slider::before {
-      transform: translateX(20px);
-    }
-
-    .result-card {
-      background: linear-gradient(135deg, rgba(191, 226, 255, 0.08) 0%, rgba(135, 206, 250, 0.04) 100%);
-      border: 1px solid rgba(191, 226, 255, 0.18);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .result-label {
-      font-size: 12px;
+    .provider-title {
+      font-size: 17px;
       font-weight: 600;
-      color: rgba(245, 245, 247, 0.7);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+      color: var(--text);
     }
 
-    .result-recommendation {
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--baby-blue);
-      margin-bottom: 8px;
-      line-height: 1.1;
-    }
-
-    .result-explanation {
-      font-size: 14px;
-      color: rgba(245, 245, 247, 0.78);
-      line-height: 1.5;
-      margin-bottom: 24px;
-    }
-
-    .result-breakdown {
+    .provider-list {
+      list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(245, 245, 247, 0.12);
+      gap: 16px;
     }
 
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+    .provider-item {
       font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .provider-item strong { color: var(--text); font-weight: 600; }
+
+    .provider-links {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
     }
 
-    .result-row-label {
-      color: rgba(245, 245, 247, 0.7);
-    }
-
-    .result-row-value {
+    .provider-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
       font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      color: var(--text-inverse);
-      text-align: right;
+      color: var(--accent);
+      background: var(--baby-blue-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
     }
-
-    .result-row.total {
-      padding-top: 12px;
-      border-top: 1px solid rgba(245, 245, 247, 0.12);
-      font-size: 16px;
+    .provider-btn:hover {
+      background: var(--accent);
+      color: #fff;
     }
-
-    .result-row.total .result-row-label {
-      color: var(--text-inverse);
-      font-weight: 600;
-    }
-
-    .result-row.total .result-row-value {
-      color: var(--success);
-      font-size: 18px;
-    }
-
-    .result-row.negative .result-row-value {
-      color: var(--warning);
+    .provider-btn::after {
+      content: "↗";
+      font-size: 11px;
     }
 
     /* ========== CHECKLIST ========== */
@@ -937,6 +760,15 @@
       border-radius: 999px;
       transition: width 0.5s var(--ease-out);
       width: 0;
+    }
+
+    .checklist-group-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-tertiary);
+      padding: 22px 20px 8px;
     }
 
     .checklist-item {
@@ -1037,63 +869,6 @@
       color: var(--warning);
     }
 
-    /* ========== TIPS ========== */
-    .tips-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .tip-card {
-      background: var(--bg-elevated);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      border: 1px solid var(--border-light);
-      transition: all 0.3s var(--ease-out);
-    }
-
-    .tip-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .tip-card.warning {
-      background: linear-gradient(135deg, #FFF4E0, #FFFBF0);
-      border-color: rgba(255, 159, 10, 0.2);
-    }
-
-    .tip-card.info {
-      background: linear-gradient(135deg, var(--baby-blue-soft), #F0F8FF);
-      border-color: rgba(0, 113, 227, 0.15);
-    }
-
-    .tip-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-elevated);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      font-size: 20px;
-      box-shadow: var(--shadow-xs);
-    }
-
-    .tip-title {
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-
-    .tip-description {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
     /* ========== FOOTER ========== */
     .footer {
       padding: 40px 24px max(40px, calc(env(safe-area-inset-bottom) + 40px));
@@ -1139,46 +914,22 @@
         padding: 56px 20px;
       }
 
-      .quick-grid,
-      .plans,
-      .tips-grid {
+      .route-grid,
+      .providers-grid {
         grid-template-columns: 1fr;
       }
 
-      .comparison-tabs {
-        display: flex;
+      .cost-row {
+        grid-template-columns: 1fr auto;
+        gap: 4px 14px;
       }
-
-      .compare-row {
-        grid-template-columns: 1.5fr 1fr;
-        padding: 14px 16px;
-        font-size: 14px;
+      .cost-detail {
+        grid-column: 1 / 2;
+        order: 3;
       }
-
-      .compare-row.header > div:nth-child(3),
-      .compare-row.header > div:nth-child(4) {
-        display: none;
-      }
-
-      .compare-row.header > div:nth-child(2) {
-        text-align: right;
-      }
-
-      .compare-row > div.compare-value:not(.show-mobile) {
-        display: none;
-      }
-
-      .compare-row > div.compare-value.show-mobile {
-        text-align: right;
-      }
-
-      .configurator-wrap {
-        padding: 36px 24px;
-      }
-
-      .config-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
+      .cost-value {
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
       }
 
       .checklist-progress {
@@ -1200,16 +951,16 @@
         font-size: 38px;
       }
 
-      .plan {
-        padding: 24px 20px;
-      }
-
-      .quick-card {
+      .route-card,
+      .provider-card {
         padding: 22px 20px;
       }
 
-      .tip-card {
-        padding: 22px;
+      .countdown {
+        gap: 6px;
+      }
+      .countdown-unit {
+        padding: 14px 4px;
       }
     }
 
@@ -1229,6 +980,7 @@
       color: var(--bg-dark);
     }
 
+    a:focus-visible,
     button:focus-visible,
     input:focus-visible,
     .checklist-item:focus-visible {
@@ -1250,7 +1002,7 @@
   <!-- ========== NAV ========== -->
   <nav class="nav">
     <div class="nav-inner">
-      <div class="nav-title">Reise-Plan</div>
+      <div class="nav-title">Reiseplan</div>
       <div class="nav-badge">05.–25. August 2026</div>
     </div>
   </nav>
@@ -1258,450 +1010,453 @@
   <!-- ========== SUBNAV ========== -->
   <nav class="subnav" aria-label="Sektionen">
     <div class="subnav-inner" id="subnav-scroll">
-      <a href="#plans" data-target="plans">Pläne</a>
-      <a href="#quick" data-target="quick">Schnell-Info</a>
-      <a href="#compare" data-target="compare">Vergleich</a>
-      <a href="#configurator" data-target="configurator">Konfigurator</a>
-      <a href="#checklist" data-target="checklist">Aktionsplan</a>
-      <a href="#tips" data-target="tips">Hinweise</a>
+      <a href="#route" data-target="route">Route</a>
+      <a href="#kosten" data-target="kosten">Kosten</a>
+      <a href="#anbieter" data-target="anbieter">Anbieter</a>
+      <a href="#checkliste" data-target="checkliste">Checkliste</a>
     </div>
   </nav>
 
-  <!-- ========== HERO ========== -->
+  <!-- ========== HERO + COUNTDOWN ========== -->
   <header class="hero">
-    <div class="hero-eyebrow">Revolut · Plan-Vergleich</div>
+    <div class="hero-eyebrow">Thailand · August 2026</div>
     <h1 class="hero-title">
-      Der richtige Plan<br>
-      für <span class="accent-text">deine Reise.</span>
+      Unsere<br>
+      <span class="accent-text">Thailand-Reise.</span>
     </h1>
     <p class="hero-subtitle">
-      Standard, Premium oder Metal? Konfiguriere deine Reise und finde heraus, welcher Plan wirklich Sinn macht – mit allen Fakten zu Gebühren, Versicherung und Timing.
+      Route, Kosten und alles Wichtige an einem Ort.
     </p>
+
+    <div class="countdown-card">
+      <div class="countdown-flight">✈️ Frankfurt → Bangkok</div>
+      <div class="countdown" id="countdown" role="timer" aria-live="off">
+        <div class="countdown-unit"><span class="countdown-num" id="cd-days">–</span><span class="countdown-label">Tage</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-hours">–</span><span class="countdown-label">Std</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-mins">–</span><span class="countdown-label">Min</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-secs">–</span><span class="countdown-label">Sek</span></div>
+      </div>
+      <div class="countdown-date">Abflug 5. August 2026, 12:10 Uhr</div>
+    </div>
   </header>
 
-  <!-- ========== PLAN CARDS ========== -->
-  <section class="section reveal" id="plans">
+  <!-- ========== ROUTE ========== -->
+  <section class="section reveal" id="route">
     <div class="section-header">
-      <div class="section-eyebrow">Die Pläne</div>
-      <h2 class="section-title">Drei Optionen.<br>Ein Sweet Spot.</h2>
-      <p class="section-subtitle">Standard ist gratis, hat aber keinen Versicherungsschutz. Premium und Metal kosten monatlich – decken aber Krankheit, Stornos und mehr ab.</p>
+      <div class="section-eyebrow">Reiseroute</div>
+      <h2 class="section-title">Vier Etappen.<br>Eine Reise.</h2>
+      <p class="section-subtitle">Von Bangkok über die Inseln des Golfs und der Andamanensee bis nach Phuket – rund 20 Tage zu zweit.</p>
     </div>
 
-    <div class="plans">
-      <article class="plan" data-plan="standard">
-        <div class="plan-badge" data-badge="standard">Reicht dir</div>
-        <div class="plan-name">Standard</div>
-        <div class="plan-price">0 €</div>
-        <div class="plan-price-unit">pro Monat</div>
-        <p class="plan-tagline">Basis-Konto ohne Versicherung. Wechselkurs-Limits gelten.</p>
-        <ul class="plan-features">
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>ATM 200 €/Monat kostenlos</span></li>
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>FX bis ~1.000 €/Monat</span></li>
-          <li class="plan-feature disabled"><span class="plan-feature-icon cross">×</span><span>Auslandskrankenversicherung</span></li>
-          <li class="plan-feature disabled"><span class="plan-feature-icon cross">×</span><span>Reisestornoschutz</span></li>
-          <li class="plan-feature disabled"><span class="plan-feature-icon cross">×</span><span>Gepäckschutz</span></li>
-        </ul>
-      </article>
-
-      <article class="plan recommended" data-plan="premium">
-        <div class="plan-badge" data-badge="premium">Empfohlen</div>
-        <div class="plan-name">Premium</div>
-        <div class="plan-price">9,99 €</div>
-        <div class="plan-price-unit">pro Monat</div>
-        <p class="plan-tagline">Voller Versicherungsschutz. Unbegrenzter Währungswechsel.</p>
-        <ul class="plan-features">
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>Auslandskrankenversicherung 10 Mio €</span></li>
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>Reisestorno 5.000 €/Person</span></li>
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>Gepäckschutz 1.000 €</span></li>
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>ATM 400 €/Monat</span></li>
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>FX unbegrenzt</span></li>
-        </ul>
-      </article>
-
-      <article class="plan" data-plan="metal">
-        <div class="plan-badge" data-badge="metal">Beste Wahl</div>
-        <div class="plan-name">Metal</div>
-        <div class="plan-price">13,99 €</div>
-        <div class="plan-price-unit">pro Monat</div>
-        <p class="plan-tagline">Premium + Partner mitversichert (wenn ihr zusammenwohnt).</p>
-        <ul class="plan-features">
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>Alles aus Premium</span></li>
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>Partner mitversichert</span></li>
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>ATM 800 €/Monat</span></li>
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>Cashback auf Zahlungen</span></li>
-          <li class="plan-feature"><span class="plan-feature-icon check">✓</span><span>Metal-Karte</span></li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <!-- ========== QUICK ANSWERS ========== -->
-  <section class="section reveal" id="quick">
-    <div class="section-header">
-      <div class="section-eyebrow">Schnell beantwortet</div>
-      <h2 class="section-title">Die wichtigsten<br>Fragen in einem Satz.</h2>
-      <p class="section-subtitle">Das Wichtigste, falls du nicht alles lesen willst.</p>
-    </div>
-
-    <div class="quick-grid">
-      <div class="quick-card">
-        <div class="quick-card-icon">⏰</div>
-        <div class="quick-card-question">Wann aktivieren?</div>
-        <div class="quick-card-answer"><strong>Bevor</strong> du Flug, Hotel oder Mietwagen buchst. Der Plan muss zum Buchungszeitpunkt aktiv sein und <strong>bis Reiseende</strong> laufen – sonst greift die Versicherung nicht.</div>
-      </div>
-
-      <div class="quick-card">
-        <div class="quick-card-icon">💸</div>
-        <div class="quick-card-question">Was kostet es?</div>
-        <div class="quick-card-answer">Premium <strong>9,99 €/Monat</strong>, Metal <strong>13,99 €/Monat</strong>. Monatlich kündbar – nur für die Reisemonate aktivieren, dann zurück auf Standard.</div>
-      </div>
-
-      <div class="quick-card">
-        <div class="quick-card-icon">⚡</div>
-        <div class="quick-card-question">Was sparst du?</div>
-        <div class="quick-card-answer">Externe Auslandskrankenversicherung kostet <strong>50–100 €</strong> für 2–4 Wochen. Plus: Wegfall der FX-Gebühren über 1.000 € und der Wochenend-Aufschläge.</div>
-      </div>
-
-      <div class="quick-card">
-        <div class="quick-card-icon">📋</div>
-        <div class="quick-card-question">Was beachten?</div>
-        <div class="quick-card-answer">Hauptwohnsitz muss zur Adresse im Revolut-Account passen. Reise <strong>max. 30 Tage</strong>. Buchungen müssen <strong>mit der Revolut-Karte</strong> bezahlt sein.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== COMPARISON TABLE ========== -->
-  <section class="section reveal" id="compare">
-    <div class="section-header">
-      <div class="section-eyebrow">Im Detail</div>
-      <h2 class="section-title">Alle Funktionen.<br>Übersichtlich.</h2>
-      <p class="section-subtitle">Jeder Aspekt nebeneinander – von Versicherung bis ATM-Limit.</p>
-    </div>
-
-    <div class="comparison">
-      <div class="comparison-tabs">
-        <button class="comparison-tab" data-tab="standard">Standard</button>
-        <button class="comparison-tab active" data-tab="premium">Premium</button>
-        <button class="comparison-tab" data-tab="metal">Metal</button>
-      </div>
-
-      <div class="compare-row header">
-        <div>Feature</div>
-        <div>Standard</div>
-        <div>Premium</div>
-        <div>Metal</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Monatlicher Preis<div class="compare-feature-sub">Pro Person</div></div>
-        <div class="compare-value" data-col="standard">0 €</div>
-        <div class="compare-value highlight" data-col="premium">9,99 €</div>
-        <div class="compare-value" data-col="metal">13,99 €</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Auslandskrankenversicherung<div class="compare-feature-sub">Mit Notfallrücktransport</div></div>
-        <div class="compare-value no" data-col="standard">—</div>
-        <div class="compare-value highlight" data-col="premium">10 Mio €</div>
-        <div class="compare-value highlight" data-col="metal">10 Mio €</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Reisestorno (mit Grund)<div class="compare-feature-sub">Krankheit, Todesfall etc.</div></div>
-        <div class="compare-value no" data-col="standard">—</div>
-        <div class="compare-value" data-col="premium">5.000 €</div>
-        <div class="compare-value" data-col="metal">5.000 €</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Gepäckschutz<div class="compare-feature-sub">Verlust und Beschädigung</div></div>
-        <div class="compare-value no" data-col="standard">—</div>
-        <div class="compare-value" data-col="premium">1.000 €</div>
-        <div class="compare-value" data-col="metal">1.000 €</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Flugverspätung<div class="compare-feature-sub">100 €/Stunde, bis 500 €</div></div>
-        <div class="compare-value no" data-col="standard">—</div>
-        <div class="compare-value" data-col="premium">ab 8h</div>
-        <div class="compare-value" data-col="metal">ab 8h</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Partner mitversichert<div class="compare-feature-sub">Bei gleicher Adresse</div></div>
-        <div class="compare-value no" data-col="standard">—</div>
-        <div class="compare-value no" data-col="premium">—</div>
-        <div class="compare-value highlight" data-col="metal">✓</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Währungswechsel<div class="compare-feature-sub">Ohne Aufschlag</div></div>
-        <div class="compare-value" data-col="standard">~1.000 €/Mo</div>
-        <div class="compare-value highlight" data-col="premium">Unbegrenzt</div>
-        <div class="compare-value highlight" data-col="metal">Unbegrenzt</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Wochenend-FX-Gebühr<div class="compare-feature-sub">Fr 23 Uhr – So 24 Uhr</div></div>
-        <div class="compare-value" data-col="standard">+1 %</div>
-        <div class="compare-value highlight" data-col="premium">Keine</div>
-        <div class="compare-value highlight" data-col="metal">Keine</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">ATM-Abhebung<div class="compare-feature-sub">Pro Monat kostenlos</div></div>
-        <div class="compare-value" data-col="standard">~200 €</div>
-        <div class="compare-value" data-col="premium">400 €</div>
-        <div class="compare-value highlight" data-col="metal">800 €</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Cashback<div class="compare-feature-sub">Auf Kartenzahlungen</div></div>
-        <div class="compare-value no" data-col="standard">—</div>
-        <div class="compare-value no" data-col="premium">—</div>
-        <div class="compare-value highlight" data-col="metal">✓</div>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-feature">Max. Reisedauer für Versicherung<div class="compare-feature-sub">Pro Reise</div></div>
-        <div class="compare-value no" data-col="standard">—</div>
-        <div class="compare-value" data-col="premium">30 Tage</div>
-        <div class="compare-value" data-col="metal">30 Tage</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== CONFIGURATOR ========== -->
-  <section class="section reveal" id="configurator">
-    <div class="configurator-wrap">
-      <div class="section-header">
-        <div class="section-eyebrow">Live-Konfigurator</div>
-        <h2 class="section-title">Deine Reise.<br>Deine Empfehlung.</h2>
-        <p class="section-subtitle">Stell deine Reise ein – die optimale Wahl wird in Echtzeit berechnet.</p>
-      </div>
-
-      <div class="config-grid">
-        <div class="config-inputs">
-          <div class="input-group">
-            <label for="weeks">Reisedauer</label>
-            <div class="input-with-value">
-              <span><span class="input-value" id="weeks-display">3</span><span class="input-value-suffix" id="weeks-suffix">Wochen</span></span>
-            </div>
-            <input type="range" id="weeks" min="1" max="6" step="1" value="3" aria-label="Reisedauer in Wochen">
-          </div>
-
-          <div class="input-group">
-            <label>Anzahl Personen</label>
-            <div class="segmented">
-              <button type="button" data-persons="1">Allein</button>
-              <button type="button" class="active" data-persons="2">Zu zweit</button>
-            </div>
-          </div>
-
-          <div class="switch-row">
-            <label for="together">Wohnt ihr zusammen?</label>
-            <div class="switch">
-              <input type="checkbox" id="together">
-              <span class="switch-slider"></span>
-            </div>
-          </div>
-
-          <div class="switch-row">
-            <label for="hasinsurance">Schon Auslandskrankenversicherung?</label>
-            <div class="switch">
-              <input type="checkbox" id="hasinsurance">
-              <span class="switch-slider"></span>
-            </div>
-          </div>
+    <div class="route-grid">
+      <article class="route-card">
+        <div class="route-card-top">
+          <span class="route-stage" aria-hidden="true"></span>
+          <span class="route-nights">3 Nächte</span>
         </div>
+        <div class="route-name">Bangkok <span>· Riverside</span></div>
+        <div class="route-dates">ca. 06.–09.08</div>
+        <p class="route-desc">Tempel (Wat Arun, Wat Pho, Grand Palace), Märkte, Stadtleben. Mietwagen vor Ort.</p>
+      </article>
 
-        <div class="result-card">
-          <div class="result-label">Empfehlung</div>
-          <div class="result-recommendation" id="recommendation">Premium · 2×</div>
-          <div class="result-explanation" id="explanation">Lädt …</div>
-
-          <div class="result-breakdown">
-            <div class="result-row">
-              <span class="result-row-label">Plan-Kosten (für die Reise)</span>
-              <span class="result-row-value" id="plan-cost">—</span>
-            </div>
-            <div class="result-row">
-              <span class="result-row-label">Externe Versicherung gespart</span>
-              <span class="result-row-value" id="insurance-save">—</span>
-            </div>
-            <div class="result-row">
-              <span class="result-row-label">FX-Gebühren gespart</span>
-              <span class="result-row-value" id="fx-save">—</span>
-            </div>
-            <div class="result-row total">
-              <span class="result-row-label">Netto-Vorteil</span>
-              <span class="result-row-value" id="net-saving">—</span>
-            </div>
-          </div>
+      <article class="route-card">
+        <div class="route-card-top">
+          <span class="route-stage" aria-hidden="true"></span>
+          <span class="route-nights">6 Nächte</span>
         </div>
+        <div class="route-name">Ko Pha Ngan <span>· Salad Beach</span></div>
+        <div class="route-dates">ca. 09.–15.08</div>
+        <p class="route-desc">Ruhige Strände, Schnorcheln, Roller, Inselgefühl.</p>
+      </article>
+
+      <article class="route-card">
+        <div class="route-card-top">
+          <span class="route-stage" aria-hidden="true"></span>
+          <span class="route-nights">7 Nächte</span>
+        </div>
+        <div class="route-name">Krabi <span>· Ao Nang</span></div>
+        <div class="route-dates">ca. 15.–22.08</div>
+        <p class="route-desc">Inselhopping, Railay, Kalksteinfelsen, Strände.</p>
+      </article>
+
+      <article class="route-card">
+        <div class="route-card-top">
+          <span class="route-stage" aria-hidden="true"></span>
+          <span class="route-nights">3 Nächte</span>
+        </div>
+        <div class="route-name">Phuket</div>
+        <div class="route-dates">ca. 22.–25.08</div>
+        <p class="route-desc">Strandtage, letzte Stopps, Abreise ab Phuket.</p>
+      </article>
+    </div>
+
+    <p class="route-note">Rückflug ab Phuket nach Frankfurt.</p>
+  </section>
+
+  <!-- ========== KOSTEN ========== -->
+  <section class="section reveal" id="kosten">
+    <div class="section-header">
+      <div class="section-eyebrow">Budget</div>
+      <h2 class="section-title">Was die Reise kostet.</h2>
+      <p class="section-subtitle">Geschätzt zu zweit für ~20 Tage. Bereits bezahlte Posten sind separat ausgewiesen und nicht in „noch offen" eingerechnet.</p>
+    </div>
+
+    <div class="cost-card">
+      <div class="cost-row">
+        <div class="cost-item">Unterkunft gesamt</div>
+        <div class="cost-detail">Bangkok 130 € (3 N) + Ko Pha Ngan + Krabi + Phuket</div>
+        <div class="cost-value">1.000 €</div>
       </div>
+      <div class="cost-row">
+        <div class="cost-item">Mietwagen Bangkok</div>
+        <div class="cost-detail"></div>
+        <div class="cost-value">66 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Flug Suvarnabhumi → Surat Thani</div>
+        <div class="cost-detail"></div>
+        <div class="cost-value">100 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Surat Thani → Ko Pha Ngan</div>
+        <div class="cost-detail">Bus + Fähre</div>
+        <div class="cost-value">50 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Ko Pha Ngan → Krabi/Ao Nang</div>
+        <div class="cost-detail">Bus + Fähre, ~8 h</div>
+        <div class="cost-value">45 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Krabi → Phuket</div>
+        <div class="cost-detail">Minivan, ~3–4 h</div>
+        <div class="cost-value">25 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Transfers + Grab/Taxi</div>
+        <div class="cost-detail">Phuket-Flughafen, lokale Fahrten</div>
+        <div class="cost-value">60 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Essen & Trinken</div>
+        <div class="cost-detail">~27,5 € × 2 × ~20 Tage</div>
+        <div class="cost-value">1.100 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Roller</div>
+        <div class="cost-detail">~200 THB/Tag + Sprit</div>
+        <div class="cost-value">80 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Bootstouren / Inselhopping</div>
+        <div class="cost-detail">2–3 Touren</div>
+        <div class="cost-value">200 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Tauchen / Schnorcheln</div>
+        <div class="cost-detail">Schnuppertag</div>
+        <div class="cost-value">200 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Tempel / Sightseeing</div>
+        <div class="cost-detail">Grand Palace, Wat Pho, Wat Arun</div>
+        <div class="cost-value">50 €</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">eSIM, Puffer, Kleinkram</div>
+        <div class="cost-detail"></div>
+        <div class="cost-value">180 €</div>
+      </div>
+      <div class="cost-row subtotal">
+        <div class="cost-item">Zwischensumme</div>
+        <div class="cost-detail"></div>
+        <div class="cost-value">~3.156 €</div>
+      </div>
+      <div class="cost-row buffer">
+        <div class="cost-item">+ Puffer (~10 %)</div>
+        <div class="cost-detail"></div>
+        <div class="cost-value">~316 €</div>
+      </div>
+      <div class="cost-row total">
+        <div class="cost-item">= Noch offen</div>
+        <div class="cost-detail"></div>
+        <div class="cost-value">~3.470 €</div>
+      </div>
+    </div>
+
+    <div class="cost-shares">
+      <div class="cost-shares-title">Anteile der größten Posten</div>
+      <div class="share-row">
+        <div class="share-head"><span class="share-label">Essen & Trinken</span><span class="share-val">1.100 €</span></div>
+        <div class="share-track"><div class="share-fill" style="width:100%"></div></div>
+      </div>
+      <div class="share-row">
+        <div class="share-head"><span class="share-label">Unterkunft</span><span class="share-val">1.000 €</span></div>
+        <div class="share-track"><div class="share-fill" style="width:91%"></div></div>
+      </div>
+      <div class="share-row">
+        <div class="share-head"><span class="share-label">Touren & Tauchen</span><span class="share-val">400 €</span></div>
+        <div class="share-track"><div class="share-fill" style="width:36%"></div></div>
+      </div>
+      <div class="share-row">
+        <div class="share-head"><span class="share-label">Transport gesamt</span><span class="share-val">~346 €</span></div>
+        <div class="share-track"><div class="share-fill" style="width:31%"></div></div>
+      </div>
+      <div class="share-row">
+        <div class="share-head"><span class="share-label">Sonstiges (eSIM, Roller, Sightseeing)</span><span class="share-val">310 €</span></div>
+        <div class="share-track"><div class="share-fill" style="width:28%"></div></div>
+      </div>
+    </div>
+
+    <div class="paid-card">
+      <div class="paid-title">✓ Bereits bezahlt</div>
+      <ul class="paid-list">
+        <li>Flüge FRA → Bangkok + Phuket → FRA: <strong>800 €/Person</strong></li>
+        <li>Auslandskrankenversicherung EUROPA ERK: <strong>24 €</strong></li>
+        <li>Bangkok: <strong>Royal Princess Larn Luang – SHA Extra Plus</strong>, city-view — gebucht über <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a></li>
+      </ul>
     </div>
   </section>
 
-  <!-- ========== ACTION CHECKLIST ========== -->
-  <section class="section reveal" id="checklist">
+  <!-- ========== ANBIETER ========== -->
+  <section class="section reveal" id="anbieter">
     <div class="section-header">
-      <div class="section-eyebrow">Aktionsplan</div>
-      <h2 class="section-title">Schritt für Schritt.<br>In dieser Reihenfolge.</h2>
+      <div class="section-eyebrow">Buchen & Vergleichen</div>
+      <h2 class="section-title">Anbieter & Links.</h2>
+      <p class="section-subtitle">Unterkunft, Transport, Touren und Internet – alles zum Nachschlagen. Links öffnen in einem neuen Tab.</p>
+    </div>
+
+    <div class="providers-grid">
+      <article class="provider-card">
+        <div class="provider-head">
+          <div class="provider-icon">🏝️</div>
+          <div class="provider-title">Unterkunft</div>
+        </div>
+        <ul class="provider-list">
+          <li class="provider-item">
+            Ko Pha Ngan: <strong>Bougain Villas Salad Beach</strong> (⭐ 4.9) — direkt per WhatsApp buchen (6-Nächte-Rabatt anfragen)
+          </li>
+          <li class="provider-item">
+            Krabi/Ao Nang & Phuket: flexibel, kurzfristig über Agoda
+            <div class="provider-links">
+              <a class="provider-btn" href="https://www.agoda.com" target="_blank" rel="noopener">Agoda</a>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="provider-card">
+        <div class="provider-head">
+          <div class="provider-icon">🚐</div>
+          <div class="provider-title">Transport</div>
+        </div>
+        <ul class="provider-list">
+          <li class="provider-item">
+            Flug Suvarnabhumi → Surat Thani: AirAsia / Nok Air / Thai Lion Air (vergleichen)
+          </li>
+          <li class="provider-item">
+            Bus + Fähre (Surat Thani ↔ Ko Pha Ngan, Ko Pha Ngan ↔ Krabi, Krabi ↔ Phuket): 12Go oder lokale Agenturen
+            <div class="provider-links">
+              <a class="provider-btn" href="https://12go.asia" target="_blank" rel="noopener">12Go</a>
+            </div>
+          </li>
+          <li class="provider-item">
+            Mietwagen Bangkok: vor Ort oder online buchen
+            <div class="provider-links">
+              <a class="provider-btn" href="https://skyscanner.de/carhire/" target="_blank" rel="noopener">Skyscanner</a>
+            </div>
+          </li>
+          <li class="provider-item">
+            Lokal: Grab-App (Taxi / Ride-Hailing)
+          </li>
+        </ul>
+      </article>
+
+      <article class="provider-card">
+        <div class="provider-head">
+          <div class="provider-icon">🤿</div>
+          <div class="provider-title">Touren & Aktivitäten</div>
+        </div>
+        <ul class="provider-list">
+          <li class="provider-item">
+            Krabi 4-Inseln-Tour, Phi-Phi-Tagestour: lokale Agenturen in Ao Nang oder online
+            <div class="provider-links">
+              <a class="provider-btn" href="https://www.viator.com" target="_blank" rel="noopener">Viator</a>
+              <a class="provider-btn" href="https://www.getyourguide.com" target="_blank" rel="noopener">GetYourGuide</a>
+            </div>
+          </li>
+          <li class="provider-item">
+            Roller-Verleih: vor Ort (~200 THB/Tag)
+          </li>
+          <li class="provider-item">
+            Tauchen / Schnorcheln: lokale Dive-Center auf Ko Pha Ngan / Ao Nang
+          </li>
+        </ul>
+      </article>
+
+      <article class="provider-card">
+        <div class="provider-head">
+          <div class="provider-icon">📶</div>
+          <div class="provider-title">SIM / Internet</div>
+        </div>
+        <ul class="provider-list">
+          <li class="provider-item">
+            eSIM vorab organisieren – sofort startklar bei Ankunft
+            <div class="provider-links">
+              <a class="provider-btn" href="https://www.airalo.com" target="_blank" rel="noopener">Airalo</a>
+            </div>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== CHECKLISTE ========== -->
+  <section class="section reveal" id="checkliste">
+    <div class="section-header">
+      <div class="section-eyebrow">Vorbereitung</div>
+      <h2 class="section-title">Pack- & Admin-<br>Checkliste.</h2>
       <p class="section-subtitle">Hak die Punkte ab – dein Fortschritt bleibt gespeichert, auch wenn du das Fenster schließt.</p>
     </div>
 
     <div class="checklist-wrap">
       <div class="checklist-progress">
         <div class="progress-info">
-          <strong id="progress-text">0 von 10 erledigt</strong>
-          <span>Idealer Start: 6–8 Wochen vor Abflug</span>
+          <strong id="progress-text">0 von 16 erledigt</strong>
+          <span>August in Thailand: feucht-heiß, Regenschauer möglich</span>
         </div>
         <div class="progress-bar">
           <div class="progress-fill" id="progress-fill"></div>
         </div>
       </div>
 
-      <div class="checklist-item" data-id="upgrade" tabindex="0" role="button">
+      <div class="checklist-group-title">Admin / Vor der Reise</div>
+
+      <div class="checklist-item" data-id="tdac" tabindex="0" role="button">
         <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="checklist-content">
-          <div class="checklist-title">Plan upgraden (Premium oder Metal)</div>
-          <div class="checklist-description">Muss aktiv sein BEVOR ihr Hotels & Flüge bucht – sonst greift die Versicherung später nicht.</div>
+          <div class="checklist-title">TDAC digitale Einreisekarte ausfüllen</div>
+          <div class="checklist-description">Innerhalb 72 h vor Ankunft (tdac.immigration.go.th).</div>
         </div>
-        <span class="checklist-priority high">Zuerst</span>
+        <span class="checklist-priority high">72 h</span>
       </div>
 
-      <div class="checklist-item" data-id="license" tabindex="0" role="button">
+      <div class="checklist-item" data-id="europa-hotline" tabindex="0" role="button">
         <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="checklist-content">
-          <div class="checklist-title">Internationalen Führerschein beantragen</div>
-          <div class="checklist-description">Bei der Führerscheinstelle (~16 €). Dauert 1–3 Wochen. Pflicht für Mietwagen und meist auch Roller im Ausland.</div>
+          <div class="checklist-title">EUROPA Notfall-Hotline-Nummer speichern</div>
+          <div class="checklist-description">Vor jeder Behandlung anrufen – Repatriierung vorab freigeben lassen.</div>
         </div>
-        <span class="checklist-priority high">Früh</span>
+        <span class="checklist-priority high">Wichtig</span>
       </div>
 
-      <div class="checklist-item" data-id="invite" tabindex="0" role="button">
+      <div class="checklist-item" data-id="europa-kuendigen" tabindex="0" role="button">
         <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="checklist-content">
-          <div class="checklist-title">Gemeinschaftskonto eröffnen</div>
-          <div class="checklist-description">Beide brauchen aktives Privatkonto + KYC. Eröffnung läuft über die Revolut App.</div>
+          <div class="checklist-title">EUROPA-Police kündigen</div>
+          <div class="checklist-description">Innerhalb der 1-Monats-Frist (nur für diese Reise abgeschlossen).</div>
         </div>
+        <span class="checklist-priority mid">Frist</span>
       </div>
 
-      <div class="checklist-item" data-id="subaccount" tabindex="0" role="button">
+      <div class="checklist-item" data-id="revolut-thb" tabindex="0" role="button">
         <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="checklist-content">
-          <div class="checklist-title">Unterkonto in lokaler Währung anlegen</div>
-          <div class="checklist-description">Im Gemeinschaftskonto, für die gemeinsame Reisekasse vor Ort.</div>
-        </div>
-      </div>
-
-      <div class="checklist-item" data-id="bookings" tabindex="0" role="button">
-        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="checklist-content">
-          <div class="checklist-title">Flug & Hotels mit Privatkonto-Karte buchen</div>
-          <div class="checklist-description">Wichtig: NICHT mit Joint-Karte! Versicherungsvorteile gelten nur für Privatkonto-Transaktionen.</div>
-        </div>
-        <span class="checklist-priority high">Kritisch</span>
-      </div>
-
-      <div class="checklist-item" data-id="exchange" tabindex="0" role="button">
-        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="checklist-content">
-          <div class="checklist-title">Reserve in lokaler Währung wechseln</div>
-          <div class="checklist-description">Mo–Fr wechseln (Standard hat 1% Wochenend-Aufschlag). Premium/Metal: jederzeit zum Marktkurs.</div>
+          <div class="checklist-title">Revolut: Geld in Thai Baht umtauschen</div>
+          <div class="checklist-description">Reserve vorab umtauschen und vor Ort flexibel nutzen.</div>
         </div>
       </div>
 
-      <div class="checklist-item" data-id="insurance" tabindex="0" role="button">
+      <div class="checklist-item" data-id="fuehrerschein" tabindex="0" role="button">
         <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="checklist-content">
-          <div class="checklist-title">Versicherungsbedingungen lesen</div>
-          <div class="checklist-description">In der App unter „Versicherung" → AGB. Besonders Ausschlüsse und Selbstbeteiligung.</div>
-        </div>
-        <span class="checklist-priority mid">Wichtig</span>
-      </div>
-
-      <div class="checklist-item" data-id="activities" tabindex="0" role="button">
-        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="checklist-content">
-          <div class="checklist-title">Aktivitäten-Schutz prüfen</div>
-          <div class="checklist-description">Tauchen, Bergsteigen, Roller etc. sind oft an Bedingungen geknüpft (z.B. Zertifikat, Führerschein, Begleitung).</div>
+          <div class="checklist-title">Internationalen Führerschein dabei</div>
+          <div class="checklist-description">Für Mietwagen und Roller.</div>
         </div>
       </div>
 
-      <div class="checklist-item" data-id="emergency" tabindex="0" role="button">
+      <div class="checklist-item" data-id="reisepass" tabindex="0" role="button">
         <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="checklist-content">
-          <div class="checklist-title">Notfall-Kontakte speichern</div>
-          <div class="checklist-description">XCover-Hotline (Versicherer), deutsche Botschaft im Reiseland, Revolut Support.</div>
+          <div class="checklist-title">Reisepass: min. 6 Monate gültig</div>
+          <div class="checklist-description">Gültigkeit prüfen + Kopien anlegen.</div>
+        </div>
+        <span class="checklist-priority high">Pflicht</span>
+      </div>
+
+      <div class="checklist-item" data-id="bargeld" tabindex="0" role="button">
+        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checklist-content">
+          <div class="checklist-title">Bargeld 600–1.000 € (max. 2.000 €)</div>
+          <div class="checklist-description">THB-Abhebungen werktags über Krungsri/AEON, immer THB wählen (kein DCC), auf beide Karten splitten.</div>
         </div>
       </div>
 
-      <div class="checklist-item" data-id="downgrade" tabindex="0" role="button">
+      <div class="checklist-item" data-id="esim" tabindex="0" role="button">
         <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="checklist-content">
-          <div class="checklist-title">Nach Rückkehr: Plan ggf. downgraden</div>
-          <div class="checklist-description">Monatlich kündbar – zurück auf Standard, wenn du den Plan nicht regelmäßig brauchst.</div>
+          <div class="checklist-title">eSIM organisieren</div>
+          <div class="checklist-description">Vorab kaufen (z. B. Airalo), sofort startklar bei Ankunft.</div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ========== TIPS ========== -->
-  <section class="section reveal" id="tips">
-    <div class="section-header">
-      <div class="section-eyebrow">Gut zu wissen</div>
-      <h2 class="section-title">Wichtige Hinweise.</h2>
-    </div>
+      <div class="checklist-group-title">Packen</div>
 
-    <div class="tips-grid">
-      <div class="tip-card warning">
-        <div class="tip-icon">⚠️</div>
-        <div class="tip-title">Reisestorno nur mit Grund</div>
-        <div class="tip-description">Premium/Metal erstatten nur bei Krankheit, Unfall, Todesfall in der Familie etc. – nicht bei „keine Lust mehr". „Cancel for any reason" gibt's nur bei Ultra.</div>
+      <div class="checklist-item" data-id="kleidung" tabindex="0" role="button">
+        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checklist-content">
+          <div class="checklist-title">Leichte Kleidung + Regenjacke/Poncho</div>
+        </div>
       </div>
 
-      <div class="tip-card info">
-        <div class="tip-icon">💳</div>
-        <div class="tip-title">Karten richtig nutzen</div>
-        <div class="tip-description">Versicherungsrelevantes (Flug, Hotel, Auto/Roller) mit der Privatkonto-Karte zahlen. Tägliches (Essen, Aktivitäten) mit der Joint-Karte.</div>
+      <div class="checklist-item" data-id="baden" tabindex="0" role="button">
+        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checklist-content">
+          <div class="checklist-title">Badesachen, Flip-Flops + feste Sandalen</div>
+        </div>
       </div>
 
-      <div class="tip-card">
-        <div class="tip-icon">🏧</div>
-        <div class="tip-title">ATMs im Ausland</div>
-        <div class="tip-description">Lokale Banken erheben oft eigene Gebühren pro Abhebung (typisch 3–8 €) – unabhängig vom Revolut-Plan. Lieber selten und größer abheben.</div>
+      <div class="checklist-item" data-id="tempel-kleidung" tabindex="0" role="button">
+        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checklist-content">
+          <div class="checklist-title">Schulterbedeckende Kleidung für Tempel</div>
+        </div>
       </div>
 
-      <div class="tip-card">
-        <div class="tip-icon">🛡️</div>
-        <div class="tip-title">Einlagensicherung</div>
-        <div class="tip-description">100.000 € pro Person über die litauische Einlagensicherung. Bei Gemeinschaftskonten gilt das Limit pro Inhaber – also effektiv bis 200.000 € für zwei.</div>
+      <div class="checklist-item" data-id="sonne" tabindex="0" role="button">
+        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checklist-content">
+          <div class="checklist-title">Sonnencreme + After-Sun + Mückenspray (DEET)</div>
+        </div>
       </div>
 
-      <div class="tip-card">
-        <div class="tip-icon">⏰</div>
-        <div class="tip-title">Timing entscheidet</div>
-        <div class="tip-description">Plan muss zum Zeitpunkt der Buchung aktiv sein UND bis Reiseende. Zuerst upgraden, dann erst buchen – sonst kein Versicherungsschutz.</div>
+      <div class="checklist-item" data-id="apotheke" tabindex="0" role="button">
+        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checklist-content">
+          <div class="checklist-title">Reiseapotheke</div>
+          <div class="checklist-description">Durchfallmittel, Elektrolyte, Pflaster.</div>
+        </div>
       </div>
 
-      <div class="tip-card">
-        <div class="tip-icon">🏠</div>
-        <div class="tip-title">Adresse muss stimmen</div>
-        <div class="tip-description">Die Reise muss laut Bedingungen an deiner Revolut-Adresse beginnen und enden. Bei Metal-Partner-Versicherung muss die zweite Person dieselbe gemeldete Adresse haben.</div>
+      <div class="checklist-item" data-id="adapter" tabindex="0" role="button">
+        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checklist-content">
+          <div class="checklist-title">Universaladapter + Powerbank</div>
+        </div>
       </div>
 
-      <div class="tip-card">
-        <div class="tip-icon">🛵</div>
-        <div class="tip-title">Roller & Mietwagen</div>
-        <div class="tip-description">Für Mietwagen ist ein internationaler Führerschein meist Pflicht. Roller-Fahren oft auch – auch wenn der Vermieter ihn nicht verlangt. Ohne gültigen Führerschein: kein Versicherungsschutz bei Unfall.</div>
+      <div class="checklist-item" data-id="drybag" tabindex="0" role="button">
+        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checklist-content">
+          <div class="checklist-title">Wasserdichte Handytasche / Dry Bag</div>
+        </div>
       </div>
 
-      <div class="tip-card">
-        <div class="tip-icon">🚫</div>
-        <div class="tip-title">Streit auf dem Konto</div>
-        <div class="tip-description">Wenn ihr Revolut über einen Streit informiert, wird das Gemeinschaftskonto eingefroren. Entsperrung nur mit schriftlicher Zustimmung beider Seiten.</div>
+      <div class="checklist-item" data-id="dokumente" tabindex="0" role="button">
+        <div class="checklist-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checklist-content">
+          <div class="checklist-title">Kopien wichtiger Dokumente + Versicherungsunterlagen</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1709,40 +1464,51 @@
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <p class="footer-text">
-      Dieses Tool dient nur zur Orientierung und ersetzt keine Versicherungs- oder Finanzberatung. Genaue Bedingungen, Selbstbeteiligungen und Ausschlüsse findest du in der Revolut App unter „Versicherung". Versicherungsschutz wird über XCover/Chubb bereitgestellt. Preise und Konditionen können sich ändern.
+      Alle Preise & Zeiten sind Schätzungen, Stand der Planung.
     </p>
-    <button class="footer-reset" onclick="resetAll()">Alle Eingaben zurücksetzen</button>
+    <button type="button" class="footer-reset" onclick="resetAll()">Checkliste zurücksetzen</button>
   </footer>
 
   <script>
-    // ============ STATE ============
-    const STATE_KEY = 'reise-plan-state-v2';
-    const CHECKLIST_KEY = 'reise-plan-checklist-v2';
+    // ============ COUNTDOWN ============
+    // Abflug Frankfurt → Bangkok: 5. August 2026, 12:10 Uhr
+    const DEPARTURE = new Date(2026, 7, 5, 12, 10, 0); // Monat 7 = August
 
-    const defaultState = {
-      weeks: 3,
-      persons: 2,
-      together: false,
-      hasInsurance: false
-    };
+    function pad(n) { return String(n).padStart(2, '0'); }
 
-    let state = loadState();
-    let checklist = loadChecklist();
+    function renderCountdown() {
+      const diff = DEPARTURE.getTime() - Date.now();
+      const daysEl = document.getElementById('cd-days');
+      const hoursEl = document.getElementById('cd-hours');
+      const minsEl = document.getElementById('cd-mins');
+      const secsEl = document.getElementById('cd-secs');
 
-    function loadState() {
-      try {
-        const saved = localStorage.getItem(STATE_KEY);
-        return saved ? { ...defaultState, ...JSON.parse(saved) } : { ...defaultState };
-      } catch (e) {
-        return { ...defaultState };
+      if (diff <= 0) {
+        daysEl.textContent = '0';
+        hoursEl.textContent = '00';
+        minsEl.textContent = '00';
+        secsEl.textContent = '00';
+        return;
       }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      daysEl.textContent = days;
+      hoursEl.textContent = pad(hours);
+      minsEl.textContent = pad(minutes);
+      secsEl.textContent = pad(seconds);
     }
 
-    function saveState() {
-      try {
-        localStorage.setItem(STATE_KEY, JSON.stringify(state));
-      } catch (e) {}
-    }
+    renderCountdown();
+    setInterval(renderCountdown, 1000);
+
+    // ============ CHECKLIST (localStorage) ============
+    const CHECKLIST_KEY = 'thailand-checklist-v1';
+    let checklist = loadChecklist();
 
     function loadChecklist() {
       try {
@@ -1759,207 +1525,6 @@
       } catch (e) {}
     }
 
-    // ============ CALCULATIONS ============
-    function calculate() {
-      const { weeks, persons, together, hasInsurance } = state;
-
-      // Plan-Monate: 1 Monat vor Reise (für Buchungen) + Reise-Monate
-      const planMonths = Math.max(2, Math.ceil(weeks / 4) + 1);
-
-      // FX-Ersparnis: angenommen ~150€/Woche Wechselbedarf vorab,
-      // davon entfallen ~1% Aufschlag bei Standard wenn über Monatslimit (~1000€)
-      // plus geschätzt 15% am Wochenende gewechselt
-      const fxBudgetVorab = weeks * 150;
-      const fxLimitGesamt = 1000 * Math.max(1, weeks / 4.3);
-      const fxOverflow = Math.max(0, fxBudgetVorab - fxLimitGesamt);
-      const weekendFee = fxBudgetVorab * 0.15 * 0.01;
-      const fxSavingsTotal = Math.round((fxOverflow * 0.01 + weekendFee) * persons);
-
-      // Externe Versicherung Marktwert
-      // Auslandskranken: ~20-35€ pro Person für 2-4 Wochen
-      // + Reisestorno: ~30-50€ pro Person
-      // + Gepäck: ~10€ pro Person
-      const insuranceMarketValue = persons * Math.round(20 + (weeks * 10));
-
-      // Plan-Kosten
-      const premiumCost = +(9.99 * planMonths * persons).toFixed(2);
-      const premiumCostSingle = +(9.99 * planMonths).toFixed(2);
-      const metalCostShared = +(13.99 * planMonths).toFixed(2);
-
-      // Empfehlung
-      let recommendation, planCost, recName, explanation;
-
-      if (hasInsurance) {
-        if (fxSavingsTotal > 20 || weeks >= 3) {
-          recommendation = 'premium-fx';
-          recName = persons === 2 ? 'Premium · 1×' : 'Premium';
-          planCost = premiumCostSingle;
-          explanation = persons === 2
-            ? 'Da ihr schon Krankenversicherung habt, reicht EIN Premium-Abo, um FX-Limits und Wochenend-Aufschläge zu umgehen. Der andere bleibt auf Standard.'
-            : 'Trotz bestehender Versicherung lohnt sich Premium wegen unbegrenztem Währungswechsel und höherem ATM-Limit.';
-        } else {
-          recommendation = 'standard';
-          recName = 'Standard reicht';
-          planCost = 0;
-          explanation = 'Bei kurzer Reise mit bestehendem Versicherungsschutz reicht Standard – die FX-Aufschläge sind überschaubar.';
-        }
-      } else if (persons === 2 && together) {
-        recommendation = 'metal-shared';
-        recName = 'Metal · 1×';
-        planCost = metalCostShared;
-        explanation = 'Weil ihr zusammenwohnt, deckt EIN Metal-Abo euch beide ab. Der Partner ist als zusammenlebende Person mitversichert – günstiger als 2× Premium.';
-      } else if (persons === 2 && !together) {
-        recommendation = 'premium-both';
-        recName = 'Premium · 2×';
-        planCost = premiumCost;
-        explanation = 'Da ihr nicht zusammenwohnt, braucht jeder ein eigenes Premium-Abo für die Auslandskrankenversicherung – ihr könnt nicht über ein gemeinsames Konto mitversichert werden.';
-      } else {
-        recommendation = 'premium-single';
-        recName = 'Premium';
-        planCost = premiumCostSingle;
-        explanation = 'Premium ist der Sweet Spot: Krankenversicherung, FX-Vorteile und Reisestorno-Schutz – alles in einem Plan.';
-      }
-
-      const insuranceSaved = hasInsurance ? 0 : insuranceMarketValue;
-      const netSaving = insuranceSaved + fxSavingsTotal - planCost;
-
-      return {
-        planMonths,
-        planCost,
-        insuranceMarketValue,
-        insuranceSaved,
-        fxSavingsTotal,
-        netSaving,
-        recommendation,
-        recName,
-        explanation
-      };
-    }
-
-    // ============ RENDER ============
-    function render() {
-      // Display values
-      const weeksEl = document.getElementById('weeks-display');
-      const suffixEl = document.getElementById('weeks-suffix');
-      weeksEl.textContent = state.weeks;
-      suffixEl.textContent = state.weeks === 1 ? 'Woche' : 'Wochen';
-      document.getElementById('weeks').value = state.weeks;
-      document.getElementById('together').checked = state.together;
-      document.getElementById('hasinsurance').checked = state.hasInsurance;
-
-      document.querySelectorAll('[data-persons]').forEach(btn => {
-        btn.classList.toggle('active', +btn.dataset.persons === state.persons);
-      });
-
-      // Disable "together" switch when only 1 person
-      const togetherInput = document.getElementById('together');
-      const togetherRow = togetherInput.closest('.switch-row');
-      if (state.persons === 1) {
-        togetherInput.disabled = true;
-        togetherInput.checked = false;
-        if (state.together) {
-          state.together = false;
-          saveState();
-        }
-        togetherRow.style.opacity = '0.4';
-        togetherRow.style.pointerEvents = 'none';
-      } else {
-        togetherInput.disabled = false;
-        togetherRow.style.opacity = '1';
-        togetherRow.style.pointerEvents = 'auto';
-      }
-
-      const calc = calculate();
-
-      document.getElementById('recommendation').textContent = calc.recName;
-      document.getElementById('explanation').textContent = calc.explanation;
-      document.getElementById('plan-cost').textContent = calc.planCost === 0 ? '0 €' : formatEur(calc.planCost);
-      document.getElementById('insurance-save').textContent = state.hasInsurance ? '— (vorhanden)' : formatEur(calc.insuranceMarketValue);
-      document.getElementById('fx-save').textContent = calc.fxSavingsTotal === 0 ? '< 5 €' : formatEur(calc.fxSavingsTotal);
-
-      const netRow = document.querySelector('.result-row.total');
-      const netVal = document.getElementById('net-saving');
-      if (calc.netSaving >= 0) {
-        netVal.textContent = '+' + formatEur(calc.netSaving);
-        netRow.classList.remove('negative');
-      } else {
-        netVal.textContent = formatEur(calc.netSaving);
-        netRow.classList.add('negative');
-      }
-
-      // Highlight recommended plan
-      let highlightPlan = 'premium';
-      if (calc.recommendation === 'metal-shared') highlightPlan = 'metal';
-      else if (calc.recommendation === 'standard') highlightPlan = 'standard';
-      else if (calc.recommendation.startsWith('premium')) highlightPlan = 'premium';
-
-      document.querySelectorAll('.plan').forEach(p => {
-        p.classList.toggle('recommended', p.dataset.plan === highlightPlan);
-      });
-
-      // Update mobile comparison default tab to recommended
-      document.querySelectorAll('.comparison-tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.tab === highlightPlan);
-      });
-      updateComparisonMobile(highlightPlan);
-    }
-
-    function formatEur(value) {
-      if (value === 0) return '0 €';
-      const abs = Math.abs(value);
-      const formatted = abs.toLocaleString('de-DE', {
-        minimumFractionDigits: abs % 1 === 0 ? 0 : 2,
-        maximumFractionDigits: 2
-      });
-      return (value < 0 ? '-' : '') + formatted + ' €';
-    }
-
-    // ============ EVENTS ============
-    document.getElementById('weeks').addEventListener('input', e => {
-      state.weeks = +e.target.value;
-      saveState();
-      render();
-    });
-
-    document.querySelectorAll('[data-persons]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        state.persons = +btn.dataset.persons;
-        saveState();
-        render();
-      });
-    });
-
-    document.getElementById('together').addEventListener('change', e => {
-      state.together = e.target.checked;
-      saveState();
-      render();
-    });
-
-    document.getElementById('hasinsurance').addEventListener('change', e => {
-      state.hasInsurance = e.target.checked;
-      saveState();
-      render();
-    });
-
-    // ============ COMPARISON TABS ============
-    function updateComparisonMobile(plan) {
-      document.querySelectorAll('.compare-row').forEach(row => {
-        if (row.classList.contains('header')) return;
-        row.querySelectorAll('.compare-value').forEach(cell => {
-          cell.classList.toggle('show-mobile', cell.dataset.col === plan);
-        });
-      });
-    }
-
-    document.querySelectorAll('.comparison-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.comparison-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        updateComparisonMobile(tab.dataset.tab);
-      });
-    });
-
-    // ============ CHECKLIST ============
     function renderChecklist() {
       const items = document.querySelectorAll('.checklist-item');
       let doneCount = 0;
@@ -1995,14 +1560,11 @@
 
     // ============ RESET ============
     function resetAll() {
-      if (confirm('Wirklich alle Eingaben und Häkchen zurücksetzen?')) {
+      if (confirm('Wirklich alle Häkchen zurücksetzen?')) {
         try {
-          localStorage.removeItem(STATE_KEY);
           localStorage.removeItem(CHECKLIST_KEY);
         } catch (e) {}
-        state = { ...defaultState };
         checklist = {};
-        render();
         renderChecklist();
       }
     }
@@ -2036,7 +1598,6 @@
         link.classList.toggle('active', isActive);
         if (isActive) activeLink = link;
       });
-      // Auto-scroll active link into view on mobile
       if (activeLink && subnavScroll) {
         const linkRect = activeLink.getBoundingClientRect();
         const containerRect = subnavScroll.getBoundingClientRect();
@@ -2051,7 +1612,6 @@
 
     if ('IntersectionObserver' in window) {
       const sectionObserver = new IntersectionObserver((entries) => {
-        // Find the entry that is most visible (intersecting and closest to top)
         const visible = entries
           .filter(e => e.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
@@ -2066,10 +1626,8 @@
       trackableSections.forEach(s => sectionObserver.observe(s));
     }
 
-    // Default: first link active
-    setActiveLink('plans');
+    setActiveLink('route');
 
-    // Smooth scroll for subnav clicks (with proper offset)
     subnavLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -2084,7 +1642,6 @@
     });
 
     // ============ INIT ============
-    render();
     renderChecklist();
   </script>
 </body>
